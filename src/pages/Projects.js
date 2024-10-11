@@ -220,7 +220,7 @@ export default function Projects() {
                           <TableCell>
                             <Box
                               component="img"
-                              src={item?.images && process.env.REACT_APP_API_URL + item.images[0]}
+                              src={item?.images && item.images[0]}
                               alt="blogimage"
                               sx={{ width: '100px', height: 'auto' }}
                             />

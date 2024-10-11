@@ -71,14 +71,20 @@ export default function AddProject() {
         data.append('images', item.file);
       });
       try {
-        const res = await axios.post(`${process.env.REACT_APP_API_URL}/project/create`, data);
-        toast.success(res?.data?.message);
+        const res = await axios.post(`${process.env.REACT_APP_API_URL}/project/create`, data, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          }
+        });
+        if (res?.data) {
+          toast.success(res?.data?.message);
+        }
         setFiles([]);
         navigate("/dashboard/projects")
       } catch (error) {
 
         console.log(error);
-        toast.error(error.response.data.message);
+        toast.error(error?.response?.data?.message);
       }
     },
   });
@@ -174,7 +180,7 @@ export default function AddProject() {
                         <Box style={{ display: 'flex', alignItems: 'center', marginBottom: '5px' }}>
                           {project.images?.map((item, index) => (
                             <Box key={index}>
-                              <img src={process.env.REACT_APP_API_URL + item} alt="project images" height="150px" style={{ margin: '5px' }} />
+                              <img src={item} alt="project images" height="150px" style={{ margin: '5px' }} />
                             </Box>
                           ))}
                         </Box>

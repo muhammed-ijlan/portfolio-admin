@@ -185,7 +185,7 @@ export default function ProjectView() {
                         <Box style={{ display: 'flex', alignItems: 'center', marginBottom: '5px' }}>
                           {project.images?.map((item, index) => (
                             <Box key={index}>
-                              <img src={process.env.REACT_APP_API_URL + item} alt="project images" height="150px" style={{ margin: '5px' }} />
+                              <img src={item} alt="project images" height="150px" style={{ margin: '5px' }} />
                             </Box>
                           ))}
                         </Box>
