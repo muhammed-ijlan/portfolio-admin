@@ -85,15 +85,15 @@ export default function Login() {
 
         {mdUp && (
           <SectionStyle>
-            <Logo sx={{ mb: 3, height: '80px', width: '235px' }} />
+            {/* <Logo sx={{ mb: 3, height: '80px', width: '235px' }} /> */}
             {/* randomly set image from images */}
             <Box
               component="img"
-              src="/static/illustrations/banner_login.png"
+              src="/assets/favicon.png"
               alt="login"
               sx={{
-                width: '80%',
-                height: '50%',
+                width: '30%',
+                height: '30%',
                 objectFit: 'contain',
                 borderRadius: 1,
               }}
@@ -119,7 +119,7 @@ export default function Login() {
                 fontSize: '24px', fontFamily: 'Roboto', fontWeight: 500
               }}
             >
-              Sign in to MAQLINK
+              Sign in to Ijlan Dev Admin
             </Typography>
 
             <Typography sx={{

@@ -119,7 +119,7 @@ export default function Enquiries() {
     console.log(options);
     setIsLoading1(true);
     try {
-      const res = await axios.post(`${process.env.REACT_APP_API_URL}/enquiry/export`, options);
+      const res = await axios.post(`${import.meta.env.VITE_API_KEY}/enquiry/export`, options);
       console.log('res', res);
       setIsLoading1(false);
       toast.success(res.data.message);
@@ -128,18 +128,6 @@ export default function Enquiries() {
       setIsLoading1(false);
       toast.success(error.response.data.message);
     }
-  };
-
-  const goToPage = () => {
-    console.log('hi');
-    if (input > Math.ceil(enquiryCount / size)) {
-      return;
-    }
-    setInput(input > 0 ? input : 1);
-    setPages(input - 1 >= 0 ? input - 1 : 0);
-    const temp = { ...options, page: input - 1 };
-    setOptions(temp);
-    getEnquiries(temp);
   };
 
   const handleClick = (event, index) => {
@@ -288,10 +276,7 @@ export default function Enquiries() {
                           <TableCellCustom>Date</TableCellCustom>
                           <TableCellCustom>Name</TableCellCustom>
                           <TableCellCustom>Email</TableCellCustom>
-                          <TableCellCustom>Phone</TableCellCustom>
-                          <TableCellCustom>Organisation</TableCellCustom>
-                          <TableCellCustom>Services For</TableCellCustom>
-                          <TableCellCustom>Services</TableCellCustom>
+                          <TableCellCustom>Subject</TableCellCustom>
                           <TableCellCustom>Message</TableCellCustom>
                         </TableRow>
                       </TableHead>
@@ -315,37 +300,9 @@ export default function Enquiries() {
                                 {item.email}
                               </Typography>
                             </TableCellCustom>
-                            <TableCellCustom sx={{ maxWidth: '100px' }}>{item.phone}</TableCellCustom>
-                            <TableCellCustom sx={{ maxWidth: '150px' }}>
-                              {' '}
-                              <Typography sx={{ wordBreak: 'break-all' }} variant="body1">
-                                {item.organisation}
-                              </Typography>
-                            </TableCellCustom>
-                            <TableCellCustom sx={{ maxWidth: '90px' }}>
-                              {renderServiceForChip(item?.servicesFor)}
-                            </TableCellCustom>
-                            <TableCellCustom
-                              style={{ border: '1px solid #E6E6E6', borderRadius: '4px', padding: '10px' }}
-                            >
-                              {item?.services?.map((item, id) => (
-                                <Box key={id} paddingY={0.5}>
-                                  <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
-                                    {item?.name?.replaceAll('_', ' ')}
-                                  </Typography>
-                                  {item?.serviceType?.map((type, id) => (
-                                    <Box key={id} sx={{ padding: '0px' }}>
-                                      <Typography
-                                        variant="caption"
-                                        sx={{ color: 'gray', margin: 0, padding: 0, lineHeight: 1 }}
-                                      >
-                                        {type?.toUpperCase()}
-                                      </Typography>
-                                    </Box>
-                                  ))}
-                                </Box>
-                              ))}
-                            </TableCellCustom>
+                            <TableCellCustom sx={{ maxWidth: '100px' }}>{item.subject}</TableCellCustom>
+
+
                             <TableCellCustom
                               sx={{
                                 maxWidth: '200px',

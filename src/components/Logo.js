@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { Link as RouterLink } from 'react-router-dom';
 // @mui
 import { useTheme } from '@mui/material/styles';
-import { Box } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
@@ -11,7 +11,7 @@ Logo.propTypes = {
   sx: PropTypes.object,
 };
 
-export default function Logo({ disabledLink = false, sx }) {
+export default function Logo({ disabledLink = true, sx }) {
   const theme = useTheme();
 
   const PRIMARY_LIGHT = theme.palette.primary.light;
@@ -21,7 +21,15 @@ export default function Logo({ disabledLink = false, sx }) {
   const PRIMARY_DARK = theme.palette.primary.dark;
 
   // OR
-  const logo = <Box component="img" src="/static/logo.png" sx={{ width: 190,  ...sx }} />
+  const logo =
+    <Stack alignItems={"center"} direction={"row"} gap={2}>
+      <Box component="img" src="/assets/favicon.png" sx={{ width: 50, ...sx }} />
+      <Typography
+        variant='h4'
+      >
+        Ijlan Dev
+      </Typography>
+    </Stack>
 
   // const logo = (
   //   <Box sx={{ width: 40, height: 40, ...sx }}>
